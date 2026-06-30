@@ -6,3 +6,5 @@ compiled/
 \#*
 .\#*
 .vscode/
+Thumbs.db
+desktop.ini
