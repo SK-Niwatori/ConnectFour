@@ -1,8 +1,6 @@
-#lang racket
-(require 2htdp/image)
-(require 2htdp/universe)
-
 ;;;; 盤面の管理
+
+#lang racket
 
 (provide make-empty-board)
 (provide drop-piece)

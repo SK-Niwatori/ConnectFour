@@ -1,7 +1,6 @@
 #lang racket
-(require 2htdp/image)
-(require 2htdp/universe)
 
+(require 2htdp/universe)
 (require "game-state.rkt")
 (require "board.rkt")
 (require "draw.rkt")

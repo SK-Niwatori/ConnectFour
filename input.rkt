@@ -1,12 +1,10 @@
+;;;; キー入力の処理
+
 #lang racket
-(require 2htdp/image)
-(require 2htdp/universe)
 
 (require "game-state.rkt")
 (require "judge.rkt")
 (require "board.rkt")
-
-;;;; キー入力の処理
 
 (provide control)
 

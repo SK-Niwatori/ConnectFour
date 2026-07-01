@@ -1,10 +1,8 @@
+;;;; 勝利判定の処理
+
 #lang racket
-(require 2htdp/image)
-(require 2htdp/universe)
 
 (require "board.rkt")
-
-;;;; 勝利判定の処理
 
 (provide check-winner)
 

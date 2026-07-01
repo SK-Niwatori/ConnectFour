@@ -1,10 +1,9 @@
-#lang racket
-(require 2htdp/image)
-(require 2htdp/universe)
-
-(require "game-state.rkt")
-
 ;;;; 画面の描画
+
+#lang racket
+
+(require 2htdp/image)
+(require "game-state.rkt")
 
 (provide draw-scene)
 

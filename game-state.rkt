@@ -1,8 +1,6 @@
-#lang racket
-(require 2htdp/image)
-(require 2htdp/universe)
-
 ;;;; 状態の管理
+
+#lang racket
 
 (provide world)
 (provide world-board
