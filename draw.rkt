@@ -33,6 +33,9 @@
 
 ;; ゲーム画面の描画
 (define (draw-scene w)
+  ;; 引数:
+  ;;   w : ゲーム全体の状態
+
   (let ([board           (world-board w)]           ;; 現在の盤面を表す2次元リスト
         [turn            (world-turn w)]            ;; 現在どちらのプレイヤーの番かを表す ('red, 'yellow)
         [selected-column (world-selected-column w)] ;; 現在選択している列 (0 ~ 6)
