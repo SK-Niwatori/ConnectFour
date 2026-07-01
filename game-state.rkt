@@ -27,6 +27,19 @@
 (define (world-winner w)          (cadddr w))
 (define (world-scene w)           (car (cddddr w)))
 
+;; コマを落とす
+(define (drop-piece board column piece)
+  ;; 引数:
+  ;;   board  : 現在の盤面を表す2次元リスト
+  ;;   column : コマを落とす列 (0 ~ 6)
+  ;;   piece  : 落とすコマの種類 ('red, 'yellow)
+  ;;
+  ;; 戻り値:
+  ;;   コマを落とした後の盤面を表す2次元リスト
+
+  ;; TODO
+  (error "未実装"))
+
 ;; プレイヤーのターンを交代
 (define (switch-turn turn)
   ;; 引数:
@@ -56,19 +69,6 @@
   ;;
   ;; 戻り値:
   ;;   列を右へ1つ移動させた後の列の番号
-
-  ;; TODO
-  (error "未実装"))
-
-;; コマを落とす
-(define (drop-piece board column piece)
-  ;; 引数:
-  ;;   board  : 現在の盤面を表す2次元リスト
-  ;;   column : コマを落とす列 (0 ~ 6)
-  ;;   piece  : 落とすコマの種類 ('red, 'yellow)
-  ;;
-  ;; 戻り値:
-  ;;   コマを落とした後の盤面を表す2次元リスト
 
   ;; TODO
   (error "未実装"))
