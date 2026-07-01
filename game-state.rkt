@@ -21,8 +21,8 @@
   (list board turn selected-column winner scene))
 
 ;; 状態のセレクタ
-(define (world-board w) (car w))
-(define (world-turn w) (cadr w))
+(define (world-board w)           (car w))
+(define (world-turn w)            (cadr w))
 (define (world-selected-column w) (caddr w))
-(define (world-winner w) (cadddr w))
-(define (world-scene w) (car (cddddr w)))
+(define (world-winner w)          (cadddr w))
+(define (world-scene w)           (car (cddddr w)))
