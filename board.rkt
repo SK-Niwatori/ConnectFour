@@ -7,6 +7,7 @@
 (provide make-empty-board)
 (provide drop-piece)
 (provide column-full?)
+(provide board-full?)
 
 ;; 空の盤面の作成
 (define (make-empty-board)
@@ -40,5 +41,16 @@
   ;; 戻り値:
   ;;   真偽値 (#t, #f)
 
+  ;; TODO
+  (error "未実装"))
+
+;; 盤面が全て埋まっているか確認
+(define (board-full? board)
+  ;; 引数:
+  ;;   board : 現在の盤面を表す2次元リスト
+  ;;
+  ;; 戻り値:
+  ;;   真偽値 (#t, #f)
+  
   ;; TODO
   (error "未実装"))
