@@ -26,3 +26,19 @@
 (define (world-selected-column w) (caddr w))
 (define (world-winner w)          (cadddr w))
 (define (world-scene w)           (car (cddddr w)))
+
+;; 現在選択している列を左へ1つ移動
+(define (move-column-left selected-column)
+  ;; 引数:
+  ;;   selected-column : 現在選択している列 (0 ~ 6)
+  
+  ;; TODO
+  (error "未実装"))
+
+;; 現在選択している列を右へ1つ移動
+(define (move-column-right selected-column)
+  ;; 引数:
+  ;;   selected-column : 現在選択している列 (0 ~ 6)
+
+  ;; TODO
+  (error "未実装"))
