@@ -10,6 +10,10 @@
          world-selected-column
          world-winner
          world-scene)
+(provide drop-piece)
+(provide switch-turn)
+(provide move-column-left
+         move-column-right)
 
 ;; ゲーム全体の状態を作成
 (define (world board           ;; 現在の盤面を表す2次元リスト
