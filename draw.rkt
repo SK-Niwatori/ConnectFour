@@ -23,8 +23,9 @@
   (error "未実装"))
 
 ;; リザルト画面を描画
-(define (draw-result winner)
+(define (draw-result board winner)
   ;; 引数:
+  ;;   board  : 現在の盤面を表す2次元リスト
   ;;   winner : 勝者 (#f, 'red, 'yellow, 'draw)
 
   ;; TODO
@@ -45,5 +46,5 @@
           [(eq? scene 'playing) (draw-playing board
                                               turn
                                               selected-column)]
-          [(eq? scene 'result)  (draw-result winner)]
+          [(eq? scene 'result)  (draw-result board winner)]
           [else                 (error 'draw.rkt/draw-scene "ゲームの状態`scene`が無効な値です: ~a" scene)])))
