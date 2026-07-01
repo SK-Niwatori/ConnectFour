@@ -28,17 +28,17 @@
 (define (world-scene w)           (car (cddddr w)))
 
 ;; 現在選択している列を左へ1つ移動
-(define (move-column-left selected-column)
+(define (move-column-left column)
   ;; 引数:
-  ;;   selected-column : 現在選択している列 (0 ~ 6)
+  ;;   column : 現在選択している列 (0 ~ 6)
   
   ;; TODO
   (error "未実装"))
 
 ;; 現在選択している列を右へ1つ移動
-(define (move-column-right selected-column)
+(define (move-column-right column)
   ;; 引数:
-  ;;   selected-column : 現在選択している列 (0 ~ 6)
+  ;;   column : 現在選択している列 (0 ~ 6)
 
   ;; TODO
   (error "未実装"))
