@@ -3,6 +3,7 @@
 #lang racket
 
 (provide make-empty-board)
+(provide board-column)
 (provide drop-piece)
 (provide column-full?)
 (provide board-full?)
@@ -18,7 +19,7 @@
     (empty empty empty empty empty empty)))
 
 ;; 盤面から列を取り出す
-(define (column-at board x)
+(define (board-column board x)
   ;; 引数:
   ;;   board : 現在の盤面を表す2次元リスト
   ;;   x     : 列の番号 (0 ~ 6)
