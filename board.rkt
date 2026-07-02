@@ -17,6 +17,17 @@
     (empty empty empty empty empty empty)
     (empty empty empty empty empty empty)))
 
+;; 盤面から列を取り出す
+(define (column-at board x)
+  ;; 引数:
+  ;;   board : 現在の盤面を表す2次元リスト
+  ;;   x     : 列の番号 (0 ~ 6)
+  ;;
+  ;; 戻り値:
+  ;;   盤面のx列目のリスト
+
+  (list-ref board x))
+
 ;; コマを落とす
 (define (drop-piece board column piece)
   ;; 引数:
