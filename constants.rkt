@@ -31,3 +31,18 @@
 
 ;; マス内部の円周のアウトライン
 (define GRID-OUTLINE (circle PIECE-SIZE "outline" "black"))
+
+;; 空（白色）のマス
+(define GRID-EMPTY (overlay GRID-OUTLINE
+                            PIECE-EMPTY
+                            GRID-BACK))
+
+;; 赤色のマス
+(define GRID-RED (overlay GRID-OUTLINE
+                          PIECE-RED
+                          GRID-BACK))
+
+;; 黄色のマス
+(define GRID-YELLOW (overlay GRID-OUTLINE
+                             PIECE-YELLOW
+                             GRID-BACK))
