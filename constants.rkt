@@ -11,6 +11,9 @@
 ;; コマのサイズ
 (define PIECE-SIZE 80)
 
+;; マスのサイズ
+(define GRID-SIZE 100)
+
 ;; ゲーム・リザルト画面の背景
 (define SCENE-BACK (empty-scene SCENE-SIZE SCENE-SIZE "Dodger Blue"))
 
@@ -22,3 +25,9 @@
 
 ;; 黄色のコマ
 (define PIECE-YELLOW (circle PIECE-SIZE "solid" "yellow"))
+
+;; マスの背景（透明）
+(define GRID-BACK (square GRID-SIZE "solid" "transparent"))
+
+;; マス内部の円周のアウトライン
+(define GRID-OUTLINE (circle PIECE-SIZE "outline" "black"))
