@@ -12,7 +12,7 @@
 (define PIECE-SIZE 80)
 
 ;; マスのサイズ
-(define GRID-SIZE 100)
+(define CELL-SIZE 100)
 
 ;; ゲーム・リザルト画面の背景
 (define SCENE-BACK (empty-scene SCENE-SIZE SCENE-SIZE "Dodger Blue"))
@@ -27,22 +27,22 @@
 (define PIECE-YELLOW (circle PIECE-SIZE "solid" "yellow"))
 
 ;; マスの背景（透明）
-(define GRID-BACK (square GRID-SIZE "solid" "transparent"))
+(define CELL-BACK (square CELL-SIZE "solid" "transparent"))
 
 ;; マス内部の円周のアウトライン
-(define GRID-OUTLINE (circle PIECE-SIZE "outline" "black"))
+(define CELL-OUTLINE (circle PIECE-SIZE "outline" "black"))
 
 ;; 空（白色）のマス
-(define GRID-EMPTY (overlay GRID-OUTLINE
+(define CELL-EMPTY (overlay CELL-OUTLINE
                             PIECE-EMPTY
-                            GRID-BACK))
+                            CELL-BACK))
 
 ;; 赤色のマス
-(define GRID-RED (overlay GRID-OUTLINE
+(define CELL-RED (overlay CELL-OUTLINE
                           PIECE-RED
-                          GRID-BACK))
+                          CELL-BACK))
 
 ;; 黄色のマス
-(define GRID-YELLOW (overlay GRID-OUTLINE
+(define CELL-YELLOW (overlay CELL-OUTLINE
                              PIECE-YELLOW
-                             GRID-BACK))
+                             CELL-BACK))
