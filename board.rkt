@@ -4,6 +4,7 @@
 
 (provide make-empty-board)
 (provide board-column)
+(provide board-cell)
 (provide drop-piece)
 (provide column-full?)
 (provide board-full?)
@@ -28,6 +29,18 @@
   ;;   盤面のx列目のリスト
 
   (list-ref board x))
+
+;; 盤面から特定のマスの状態を取得
+(define (board-cell board x y)
+  ;; 引数:
+  ;;   board : 現在の盤面を表す2次元リスト
+  ;;   x     : 列の番号 (0 ~ 6)
+  ;;   y     : 行の番号 (0 ~ 5)
+  ;;
+  ;; 戻り値:
+  ;;   盤面の(x, y)座標におけるマスの状態
+  
+  (list-ref (board-column board x) y))
 
 ;; コマを落とす
 (define (drop-piece board column piece)
