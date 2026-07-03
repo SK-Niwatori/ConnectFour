@@ -2,6 +2,8 @@
 
 #lang racket
 
+(require "constants.rkt")
+
 (provide make-empty-board)
 (provide board-column)
 (provide board-cell)
@@ -18,6 +20,14 @@
     (empty empty empty empty empty empty)
     (empty empty empty empty empty empty)
     (empty empty empty empty empty empty)))
+
+;; 指定した行が範囲内か判定
+(define (valid-row? row)
+  (and (<= 0 row) (< row ROW-SIZE)))
+
+;; 指定した列が範囲内か判定
+(define (valid-column? column)
+  (and (<= 0 column) (< column COLUMN-SIZE)))
 
 ;; 盤面から列を取り出す
 (define (board-column board x)
