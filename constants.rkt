@@ -5,6 +5,21 @@
 (require 2htdp/image)
 (require 2htdp/universe)
 
+(provide SCENE-SIZE
+         PIECE-SIZE
+         CELL-SIZE
+         ROW-SIZE
+         COLUMN-SIZE
+         SCENE-BACK
+         PIECE-EMPTY
+         PIECE-RED
+         PIECE-YELLOW
+         CELL-BACK
+         CELL-OUTLINE
+         CELL-EMPTY
+         CELL-RED
+         CELL-YELLOW)
+
 ;; 画面のサイズ
 (define SCENE-SIZE 800)
 
