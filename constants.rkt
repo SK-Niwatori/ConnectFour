@@ -14,6 +14,12 @@
 ;; マスのサイズ
 (define CELL-SIZE 100)
 
+;; 行のサイズ
+(define ROW-SIZE 6)
+
+;; 列のサイズ
+(define COLUMN-SIZE 7)
+
 ;; ゲーム・リザルト画面の背景
 (define SCENE-BACK (empty-scene SCENE-SIZE SCENE-SIZE "Dodger Blue"))
 
