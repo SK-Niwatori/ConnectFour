@@ -5,6 +5,9 @@
 (require "constants.rkt")
 
 (provide make-empty-board)
+(provide valid-row?
+         valid-column?
+         valid-position?)
 (provide board-column)
 (provide board-cell)
 (provide drop-piece)
