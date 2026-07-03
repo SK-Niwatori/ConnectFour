@@ -23,14 +23,33 @@
 
 ;; 指定した行が範囲内か判定
 (define (valid-row? row)
+  ;; 引数:
+  ;;   row : 行の番号
+  ;;
+  ;; 戻り値:
+  ;;   真偽値 (#t, #f)
+
   (and (<= 0 row) (< row ROW-SIZE)))
 
 ;; 指定した列が範囲内か判定
 (define (valid-column? column)
+  ;; 引数:
+  ;;   column : 列の番号
+  ;;
+  ;; 戻り値:
+  ;;   真偽値 (#t, #f)
+
   (and (<= 0 column) (< column COLUMN-SIZE)))
 
 ;; 指定した座標が範囲内か判定
 (define (valid-position? x y)
+  ;; 引数:
+  ;;   x : 列の番号
+  ;;   y : 行の番号
+  ;;
+  ;; 戻り値:
+  ;;   真偽値 (#t, #f)
+  
   (and (valid-column? x) (valid-row? y)))
 
 ;; 盤面から列を取り出す
