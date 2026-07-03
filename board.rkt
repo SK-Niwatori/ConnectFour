@@ -42,7 +42,9 @@
   ;; 戻り値:
   ;;   盤面のx列目のリスト
 
-  (list-ref board x))
+  (if (valid-column? x)
+      (list-ref board x)
+      (error 'board.rkt/board-column "範囲外の列が指定されました: ~a" x)))
 
 ;; 盤面から特定のマスの状態を取得
 (define (board-cell board x y)
@@ -54,7 +56,9 @@
   ;; 戻り値:
   ;;   盤面の(x, y)座標におけるマスの状態
   
-  (list-ref (board-column board x) y))
+  (if (valid-position? x y)
+      (list-ref (board-column board x) y)
+      (error 'board.rkt/board-cell "範囲外の座標が指定されました: (~a, ~a)" x y)))
 
 ;; コマを落とす
 (define (drop-piece board column piece)
