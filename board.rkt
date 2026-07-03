@@ -8,8 +8,8 @@
 (provide valid-row?
          valid-column?
          valid-position?)
-(provide board-column)
-(provide board-cell)
+(provide board-column
+         board-cell)
 (provide drop-piece)
 (provide column-full?)
 (provide board-full?)
