@@ -49,7 +49,7 @@
   ;;
   ;; 戻り値:
   ;;   真偽値 (#t, #f)
-  
+
   (and (valid-column? x) (valid-row? y)))
 
 ;; 盤面から列を取り出す
@@ -73,7 +73,7 @@
   ;;   y     : 行の番号 (0 ~ 5)
   ;;
   ;; 戻り値:
-  ;;   盤面の(x, y)座標におけるマスの状態
+  ;;   盤面の(x, y)座標におけるマスの状態 ('empty, 'red, 'yellow)
   
   (if (valid-position? x y)
       (list-ref (board-column board x) y)
