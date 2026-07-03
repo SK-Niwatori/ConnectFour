@@ -29,6 +29,10 @@
 (define (valid-column? column)
   (and (<= 0 column) (< column COLUMN-SIZE)))
 
+;; 指定した座標が範囲内か判定
+(define (valid-position? x y)
+  (and (valid-row? x) (valid-column? y)))
+
 ;; 盤面から列を取り出す
 (define (board-column board x)
   ;; 引数:
