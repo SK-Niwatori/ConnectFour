@@ -11,7 +11,8 @@
 (provide board-column
          board-cell)
 (provide column-replace)
-(provide drop-piece)
+(provide drop-column
+         drop-piece)
 (provide column-full?)
 (provide board-full?)
 
@@ -89,14 +90,26 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; 特定の列を置き換えた新しい盤面を返す
-(define (column-replace board column lst)
+(define (column-replace board column col-lst)
   ;; 引数:
-  ;;   board  : 置き換える前の盤面を表す2次元リスト
-  ;;   column : 置き換える列の番号 (0 ~ 6)
-  ;;   lst    : 列のリスト
+  ;;   board   : 置き換える前の盤面を表す2次元リスト
+  ;;   column  : 置き換える列の番号 (0 ~ 6)
+  ;;   col-lst : 列のリスト
   ;;
   ;; 戻り値:
-  ;;   盤面のcolumn列目だけをlstに置き換えた新しい盤面を表す2次元リスト
+  ;;   盤面のcolumn列目だけをcol-lstに置き換えた新しい盤面を表す2次元リスト
+  
+  ;; TODO
+  (error "未実装"))
+
+;; 盤面の特定の列のリストを受け取り、コマを落とした後の列のリストを返す
+(define (drop-column col-lst piece)
+  ;; 引数:
+  ;;   col-lst : コマを落とす前の列のリスト
+  ;;   piece   : 落とすコマの種類 ('red, 'yellow)
+  ;;
+  ;; 戻り値:
+  ;;   コマを落とした後の列のリスト
   
   ;; TODO
   (error "未実装"))
