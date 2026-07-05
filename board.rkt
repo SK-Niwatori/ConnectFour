@@ -8,8 +8,8 @@
 (provide valid-row?
          valid-column?
          valid-position?)
-(provide board-column
-         board-cell)
+(provide get-column)
+(provide board-cell)
 (provide column-replace)
 (provide drop-column
          drop-piece)
@@ -58,7 +58,7 @@
   (and (valid-column? x) (valid-row? y)))
 
 ;; 盤面から列を取り出す
-(define (board-column board x)
+(define (get-column board x)
   ;; 引数:
   ;;   board : 現在の盤面を表す2次元リスト
   ;;   x     : 列の番号 (0 ~ 6)
@@ -81,7 +81,7 @@
   ;;   盤面の(x, y)座標におけるマスの状態 ('empty, 'red, 'yellow)
   
   (if (valid-position? x y)
-      (list-ref (board-column board x) y)
+      (list-ref (get-column board x) y)
       (error 'board.rkt/board-cell "範囲外の座標が指定されました: (~a, ~a)" x y)))
 
 
