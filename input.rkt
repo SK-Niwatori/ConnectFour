@@ -8,17 +8,20 @@
 
 (provide control)
 
-;; タイトル画面でのキー入力処理
-(define (control-title w k)
+;; キーボード入力を処理
+(define (control w k)
   ;; 引数:
   ;;   w : ゲーム全体の状態
   ;;   k : 入力されたキー ("left", "right", " ", … など)
   ;;
   ;; 戻り値:
   ;;   キーを入力した後の新しいゲーム全体の状態
-  
-  ;; TODO
-  (error "未実装"))
+
+  (let ([scene (world-scene w)]) ;; 現在の画面 ('title, 'playing, 'result)
+    (cond [(eq? scene 'playing) (control-playing w k)]
+          [(eq? scene 'title)   (control-title w k)]
+          [(eq? scene 'result)  (control-result w k)]
+          [else                 (error 'input.rkt/control "ゲームの状態`scene`が無効な値です: ~a" scene)])))
 
 ;; ゲーム中の画面でのキー入力処理
 (define (control-playing w k)
@@ -63,6 +66,23 @@
                             scene))))]
           [else w])))
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ここから下を実装
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; タイトル画面でのキー入力処理
+(define (control-title w k)
+  ;; 引数:
+  ;;   w : ゲーム全体の状態
+  ;;   k : 入力されたキー ("left", "right", " ", … など)
+  ;;
+  ;; 戻り値:
+  ;;   キーを入力した後の新しいゲーム全体の状態
+  
+  ;; TODO
+  (error "未実装"))
+
 ;; リザルト画面でのキー入力処理
 (define (control-result w k)
   ;; 引数:
@@ -75,17 +95,3 @@
   ;; TODO
   (error "未実装"))
 
-;; キーボード入力を処理
-(define (control w k)
-  ;; 引数:
-  ;;   w : ゲーム全体の状態
-  ;;   k : 入力されたキー ("left", "right", " ", … など)
-  ;;
-  ;; 戻り値:
-  ;;   キーを入力した後の新しいゲーム全体の状態
-
-  (let ([scene (world-scene w)]) ;; 現在の画面 ('title, 'playing, 'result)
-    (cond [(eq? scene 'title)   (control-title w k)]
-          [(eq? scene 'playing) (control-playing w k)]
-          [(eq? scene 'result)  (control-result w k)]
-          [else                 (error 'input.rkt/control "ゲームの状態`scene`が無効な値です: ~a" scene)])))
