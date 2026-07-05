@@ -10,6 +10,7 @@
          valid-position?)
 (provide board-column
          board-cell)
+(provide column-replace)
 (provide drop-piece)
 (provide column-full?)
 (provide board-full?)
