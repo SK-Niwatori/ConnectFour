@@ -82,6 +82,11 @@
       (list-ref (board-column board x) y)
       (error 'board.rkt/board-cell "範囲外の座標が指定されました: (~a, ~a)" x y)))
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ここから下を実装
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; 特定の列を置き換えた新しい盤面を返す
 (define (column-replace board column lst)
   ;; 引数:
