@@ -10,7 +10,7 @@
          valid-position?)
 (provide get-column)
 (provide board-cell)
-(provide column-replace)
+(provide replace-column)
 (provide drop-column
          drop-piece)
 (provide column-full?)
@@ -90,7 +90,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; 特定の列を置き換えた新しい盤面を返す
-(define (column-replace board column col-lst)
+(define (replace-column board column col-lst)
   ;; 引数:
   ;;   board   : 置き換える前の盤面を表す2次元リスト
   ;;   column  : 置き換える列の番号 (0 ~ 6)
