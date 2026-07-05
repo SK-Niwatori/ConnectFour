@@ -25,6 +25,17 @@
           [(eq? scene 'result)  (draw-result board winner)]
           [else                 (error 'draw.rkt/draw-scene "ゲームの状態`scene`が無効な値です: ~a" scene)])))
 
+;; 盤面を描画
+(define (draw-board board)
+  ;; 引数:
+  ;;   board : 現在の盤面を表す2次元リスト
+  ;;
+  ;; 戻り値:
+  ;;   盤面を描画した画像
+
+  ;; TODO
+  (error "未実装"))
+
 ;; ゲーム画面を描画
 (define (draw-playing board turn column)
   ;; 引数:
@@ -48,7 +59,7 @@
   ;; 戻り値:
   ;;   タイトル画面を描画した画像
 
-  ;;TODO
+  ;; TODO
   (error "未実装"))
 
 ;; リザルト画面を描画
