@@ -34,8 +34,40 @@
   ;; 戻り値:
   ;;   盤面を描画した画像
 
-  ;; TODO
-  (error "未実装"))
+  (define (cell-x column)
+    (+ (* column CELL-SIZE) (/ CELL-SIZE 2)))
+  
+  (define (cell-y row)
+    (+ (* row CELL-SIZE) (/ CELL-SIZE 2)))
+
+  (define (draw-cols column cols-lst back)
+    (define (draw-rows row rows-lst back)
+      (if (null? rows-lst)
+          back
+          (draw-rows (+ row 1)
+                     (cdr rows-lst)
+                     (let ([piece (car rows-lst)])
+                       (cond [(eq? piece 'empty)
+                              (place-image CELL-EMPTY
+                                           (cell-x column) (cell-y row)
+                                           back)]
+                             [(eq? piece 'red)
+                              (place-image CELL-RED
+                                           (cell-x column) (cell-y row)
+                                           back)]
+                             [(eq? piece 'yellow)
+                              (place-image CELL-YELLOW
+                                           (cell-x column) (cell-y row)
+                                           back)]
+                             [else (error 'draw.rkt/draw-board "盤面のコマが無効な値です: ~a" piece)])))))
+  
+    (if (null? cols-lst)
+        back
+        (draw-cols (+ column 1)
+                   (cdr cols-lst)
+                   (draw-rows 0 (car cols-lst) back))))
+  
+  (draw-cols 0 board BOARD-BACK))
 
 ;; ゲーム画面を描画
 (define (draw-playing board turn column)
