@@ -72,3 +72,5 @@
                                           0 30
                                           (rectangle 20 30 "solid" "black"))))
 
+;; 盤面の背景（透明）
+(define BOARD-BACK (rectangle (* CELL-SIZE COLUMN-SIZE) (* CELL-SIZE ROW-SIZE) "solid" "transparent"))
