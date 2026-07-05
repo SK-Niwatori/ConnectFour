@@ -7,30 +7,6 @@
 
 (provide draw-scene)
 
-;; タイトル画面を描画
-(define (draw-title)
-  ;;TODO
-  (error "未実装"))
-
-;; ゲーム画面を描画
-(define (draw-playing board turn column)
-  ;; 引数:
-  ;;   board  : 現在の盤面を表す2次元リスト
-  ;;   turn   : 現在どちらのプレイヤーの番かを表す ('red, 'yellow)
-  ;;   column : 現在選択している列 (0 ~ 6)
-
-  ;; TODO
-  (error "未実装"))
-
-;; リザルト画面を描画
-(define (draw-result board winner)
-  ;; 引数:
-  ;;   board  : 現在の盤面を表す2次元リスト
-  ;;   winner : 勝者 (#f, 'red, 'yellow, 'draw)
-
-  ;; TODO
-  (error "未実装"))
-
 ;; ゲーム画面の描画
 (define (draw-scene w)
   ;; 引数:
@@ -42,9 +18,38 @@
         [winner (world-winner w)] ;; 勝者 (#f, 'red, 'yellow, 'draw)
         [scene  (world-scene w)]  ;; 現在の画面 ('title, 'playing, 'result)
         )
-    (cond [(eq? scene 'title)   (draw-title)]
-          [(eq? scene 'playing) (draw-playing board
+    (cond [(eq? scene 'playing) (draw-playing board
                                               turn
                                               column)]
+          [(eq? scene 'title)   (draw-title)]
           [(eq? scene 'result)  (draw-result board winner)]
           [else                 (error 'draw.rkt/draw-scene "ゲームの状態`scene`が無効な値です: ~a" scene)])))
+
+;; ゲーム画面を描画
+(define (draw-playing board turn column)
+  ;; 引数:
+  ;;   board  : 現在の盤面を表す2次元リスト
+  ;;   turn   : 現在どちらのプレイヤーの番かを表す ('red, 'yellow)
+  ;;   column : 現在選択している列 (0 ~ 6)
+
+  ;; TODO
+  (error "未実装"))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ここから下を実装
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; タイトル画面を描画
+(define (draw-title)
+  ;;TODO
+  (error "未実装"))
+
+;; リザルト画面を描画
+(define (draw-result board winner)
+  ;; 引数:
+  ;;   board  : 現在の盤面を表す2次元リスト
+  ;;   winner : 勝者 (#f, 'red, 'yellow, 'draw)
+
+  ;; TODO
+  (error "未実装"))
