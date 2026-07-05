@@ -47,7 +47,7 @@
 (define (draw-title)
   ;; 戻り値:
   ;;   タイトル画面を描画した画像
-  
+
   ;;TODO
   (error "未実装"))
 
@@ -55,7 +55,7 @@
 (define (draw-result board winner)
   ;; 引数:
   ;;   board  : 現在の盤面を表す2次元リスト
-  ;;   winner : 勝者 (#f, 'red, 'yellow, 'draw)
+  ;;   winner : 勝者 ('red, 'yellow, 'draw)
   ;;
   ;; 戻り値:
   ;;   リザルト画面を描画した画像
