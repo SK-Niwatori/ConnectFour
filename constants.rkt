@@ -66,3 +66,9 @@
 (define CELL-YELLOW (overlay CELL-OUTLINE
                              PIECE-YELLOW
                              CELL-BACK))
+
+;; 現在選択中の列を示す矢印
+(define ARROW (rotate 180 (overlay/offset (triangle 40 "solid" "black")
+                                          0 30
+                                          (rectangle 20 30 "solid" "black"))))
+
