@@ -82,6 +82,19 @@
       (list-ref (board-column board x) y)
       (error 'board.rkt/board-cell "範囲外の座標が指定されました: (~a, ~a)" x y)))
 
+;; 特定の列を置き換えた新しい盤面を返す
+(define (column-replace board column lst)
+  ;; 引数:
+  ;;   board  : 置き換える前の盤面を表す2次元リスト
+  ;;   column : 置き換える列の番号 (0 ~ 6)
+  ;;   lst    : 列のリスト
+  ;;
+  ;; 戻り値:
+  ;;   盤面のcolumn列目だけをlstに置き換えた新しい盤面を表す2次元リスト
+  
+  ;; TODO
+  (error "未実装"))
+
 ;; コマを落とす
 (define (drop-piece board column piece)
   ;; 引数:
