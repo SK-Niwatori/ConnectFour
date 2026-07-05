@@ -2,6 +2,8 @@
 
 #lang racket
 
+(require "constants.rkt")
+
 (provide world)
 (provide world-board
          world-turn
