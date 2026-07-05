@@ -79,10 +79,11 @@
   ;;
   ;; 戻り値:
   ;;   盤面の(x, y)座標におけるマスの状態 ('empty, 'red, 'yellow)
+  ;;   範囲外が指定された場合は#f
   
   (if (valid-position? x y)
       (list-ref (get-column board x) y)
-      (error 'board.rkt/board-cell "範囲外の座標が指定されました: (~a, ~a)" x y)))
+      #f))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
