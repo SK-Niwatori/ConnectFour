@@ -4,6 +4,7 @@
 
 (require 2htdp/image)
 (require "game-state.rkt")
+(require "constants.rkt")
 
 (provide draw-scene)
 
