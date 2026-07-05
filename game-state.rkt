@@ -28,6 +28,11 @@
 (define (world-winner w) (cadddr w))
 (define (world-scene w)  (car (cddddr w)))
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ここから下を実装
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; プレイヤーのターンを交代
 (define (switch-turn turn)
   ;; 引数:
