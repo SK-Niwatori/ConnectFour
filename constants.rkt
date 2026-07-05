@@ -24,7 +24,7 @@
 ;; 画面のサイズ
 (define SCENE-SIZE 800)
 
-;; コマのサイズ
+;; コマのサイズ（直径）
 (define PIECE-SIZE 80)
 
 ;; マスのサイズ
@@ -40,19 +40,19 @@
 (define SCENE-BACK (empty-scene SCENE-SIZE SCENE-SIZE "Dodger Blue"))
 
 ;; 空（白色）のコマ
-(define PIECE-EMPTY (circle PIECE-SIZE "solid" "white"))
+(define PIECE-EMPTY (circle (/ PIECE-SIZE 2) "solid" "white"))
 
 ;; 赤色のコマ
-(define PIECE-RED (circle PIECE-SIZE "solid" "red"))
+(define PIECE-RED (circle (/ PIECE-SIZE 2) "solid" "red"))
 
 ;; 黄色のコマ
-(define PIECE-YELLOW (circle PIECE-SIZE "solid" "yellow"))
+(define PIECE-YELLOW (circle (/ PIECE-SIZE 2) "solid" "yellow"))
 
 ;; マスの背景（透明）
 (define CELL-BACK (square CELL-SIZE "solid" "transparent"))
 
 ;; マス内部の円周のアウトライン
-(define CELL-OUTLINE (circle PIECE-SIZE "outline" "black"))
+(define CELL-OUTLINE (circle (/ PIECE-SIZE 2) "outline" "black"))
 
 ;; 空（白色）のマス
 (define CELL-EMPTY (overlay CELL-OUTLINE
