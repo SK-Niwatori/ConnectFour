@@ -17,7 +17,9 @@
          CELL-OUTLINE
          CELL-EMPTY
          CELL-RED
-         CELL-YELLOW)
+         CELL-YELLOW
+         ARROW
+         BOARD-BACK)
 
 ;; 画面のサイズ
 (define SCENE-SIZE 800)
