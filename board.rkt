@@ -11,6 +11,7 @@
 (provide piece?)
 (provide get-column
          get-cell)
+(provide top-piece-row)
 (provide replace-column)
 (provide drop-column
          drop-piece)
@@ -96,6 +97,23 @@
   (if (valid-position? x y)
       (list-ref (get-column board x) y)
       #f))
+
+;; 指定された列で一番上にあるコマの行番号を返す
+(define (top-piece-row board column)
+  ;; 引数:
+  ;;   board  : 現在の盤面を表す2次元リスト
+  ;;   column : 列の番号 (0 ~ 6)
+  ;;
+  ;; 戻り値:
+  ;;   column列目の一番上にあるコマの行番号 (0 ~ 5)
+  ;;   コマが無い場合は#f
+  
+  (define (iter lst row)
+    (cond [(null? lst) #f]
+          [(piece? (car lst)) row]
+          [else (iter (cdr lst) (+ row 1))]))
+  
+  (iter (get-column board column) 0))
 
 ;; 特定の列を置き換えた新しい盤面を返す
 (define (replace-column board column col-lst)
