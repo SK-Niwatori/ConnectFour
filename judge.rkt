@@ -43,11 +43,12 @@
   (error "未実装"))
 
 ;; 縦横斜めで4つ並んでいるかの判定
-(define (connect-four? board x y)
+(define (connect-four? board x y piece)
   ;; 引数:
   ;;   board : 盤面を表す2次元リスト
   ;;   x     : 基準となるコマの列番号 (0 ~ 6)
   ;;   y     : 基準となるコマの行番号 (0 ~ 5)
+  ;;   piece : 判定するコマの種類 ('red, 'yellow)
   ;;
   ;; 戻り値:
   ;;   真偽値 (#t, #f)
