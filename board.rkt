@@ -85,11 +85,6 @@
       (list-ref (get-column board x) y)
       #f))
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ここから下を実装
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;; 特定の列を置き換えた新しい盤面を返す
 (define (replace-column board column col-lst)
   ;; 引数:
@@ -100,8 +95,13 @@
   ;; 戻り値:
   ;;   盤面のcolumn列目だけをcol-lstに置き換えた新しい盤面を表す2次元リスト
   
-  ;; TODO
-  (error "未実装"))
+  (cond [(= column 0) (cons col-lst (cdr board))]
+        [else (cons (car board) (replace-column (cdr board) (- column 1) col-lst))]))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ここから下を実装
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; 盤面の特定の列のリストを受け取り、コマを落とした後の列のリストを返す
 (define (drop-column col-lst piece)
