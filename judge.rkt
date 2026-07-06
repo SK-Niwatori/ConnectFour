@@ -55,3 +55,281 @@
   
   ;; TODO
   (error "未実装"))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; テストコード
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; このコマンドでテストを実行
+;; raco test judge.rkt
+
+(module+ test
+  (require rackunit)
+  
+  (define BOARD-A '((empty empty empty empty empty empty)
+                    (empty empty empty empty yellow yellow)
+                    (empty empty empty empty yellow red)
+                    (empty empty red yellow red red)
+                    (empty empty yellow red red yellow)
+                    (empty empty empty empty empty empty)
+                    (empty empty empty empty empty empty)))
+
+  (define BOARD-B '((empty empty empty empty empty empty)
+                    (empty empty empty empty empty red)
+                    (empty empty empty yellow red red)
+                    (empty empty yellow red yellow yellow)
+                    (empty empty red red yellow yellow)
+                    (empty empty empty yellow yellow red)
+                    (empty empty empty red red yellow)))
+
+  (define BOARD-C '((red red yellow yellow red red)
+                    (yellow yellow yellow red yellow yellow)
+                    (red yellow red yellow red red)
+                    (red yellow yellow red yellow red)
+                    (yellow red yellow red yellow red)
+                    (red red yellow red red yellow)
+                    (red yellow red yellow yellow yellow)))
+
+  (test-case "count-direction"
+    ;; 右
+    (check-equal? (count-direction BOARD-A
+                                   1 4
+                                   1 0
+                                   'yellow)
+                  1)
+    (check-equal? (count-direction BOARD-A
+                                   4 2
+                                   1 0
+                                   'yellow)
+                  0)
+    (check-equal? (count-direction BOARD-A
+                                   3 2
+                                   1 0
+                                   'red)
+                  0)
+    (check-equal? (count-direction BOARD-B
+                                   1 5
+                                   1 0
+                                   'red)
+                  1)
+    (check-equal? (count-direction BOARD-B
+                                   6 3
+                                   1 0
+                                   'red)
+                  0)
+    (check-equal? (count-direction BOARD-C
+                                   5 0
+                                   1 0
+                                   'red)
+                  1)
+    (check-equal? (count-direction BOARD-C
+                                   4 0
+                                   1 0
+                                   'yellow)
+                  0)
+    
+    ;; 左
+    (check-equal? (count-direction BOARD-A
+                                   2 4
+                                   -1 0
+                                   'yellow)
+                  1)
+    (check-equal? (count-direction BOARD-A
+                                   3 2
+                                   -1 0
+                                   'red)
+                  0)
+    (check-equal? (count-direction BOARD-A
+                                   4 2
+                                   -1 0
+                                   'yellow)
+                  0)
+    (check-equal? (count-direction BOARD-B
+                                   5 3
+                                   -1 0
+                                   'yellow)
+                  0)
+    (check-equal? (count-direction BOARD-B
+                                   1 5
+                                   -1 0
+                                   'red)
+                  0)
+    (check-equal? (count-direction BOARD-C
+                                   0 0
+                                   -1 0
+                                   'red)
+                  0)
+    (check-equal? (count-direction BOARD-C
+                                   6 0
+                                   -1 0
+                                   'red)
+                  1)
+
+    ;; 上（省略）
+
+    ;; 下
+    (check-equal? (count-direction BOARD-A
+                                   1 4
+                                   0 1
+                                   'yellow)
+                  1)
+    (check-equal? (count-direction BOARD-A
+                                   3 2
+                                   0 1
+                                   'red)
+                  0)
+    (check-equal? (count-direction BOARD-B
+                                   1 5
+                                   0 1
+                                   'red)
+                  0)
+    (check-equal? (count-direction BOARD-B
+                                   5 3
+                                   0 1
+                                   'yellow)
+                  1)
+    (check-equal? (count-direction BOARD-C
+                                   1 0
+                                   0 1
+                                   'yellow)
+                  2)
+
+    ;; 右上
+    (check-equal? (count-direction BOARD-A
+                                   2 4
+                                   1 -1
+                                   'yellow)
+                  2)
+    (check-equal? (count-direction BOARD-A
+                                   3 2
+                                   1 -1
+                                   'red)
+                  0)
+    (check-equal? (count-direction BOARD-B
+                                   1 5
+                                   1 -1
+                                   'red)
+                  3)
+    (check-equal? (count-direction BOARD-B
+                                   6 3
+                                   1 -1
+                                   'red)
+                  0)
+    (check-equal? (count-direction BOARD-C
+                                   0 0
+                                   1 -1
+                                   'red)
+                  0)
+    (check-equal? (count-direction BOARD-C
+                                   6 0
+                                   1 -1
+                                   'red)
+                  0)
+
+    ;; 左下
+    (check-equal? (count-direction BOARD-A
+                                   4 2
+                                   -1 1
+                                   'yellow)
+                  3)
+    (check-equal? (count-direction BOARD-A
+                                   3 2
+                                   -1 1
+                                   'red)
+                  0)
+    (check-equal? (count-direction BOARD-B
+                                   4 2
+                                   -1 1
+                                   'red)
+                  3)
+    (check-equal? (count-direction BOARD-B
+                                   1 5
+                                   -1 1
+                                   'red)
+                  0)
+    (check-equal? (count-direction BOARD-C
+                                   0 0
+                                   -1 1
+                                   'red)
+                  0)
+    (check-equal? (count-direction BOARD-C
+                                   4 0
+                                   -1 1
+                                   'yellow)
+                  1)
+
+    ;; 左上
+    (check-equal? (count-direction BOARD-A
+                                   4 2
+                                   -1 -1
+                                   'yellow)
+                  0)
+    (check-equal? (count-direction BOARD-B
+                                   4 5
+                                   -1 -1
+                                   'yellow)
+                  2)
+    (check-equal? (count-direction BOARD-C
+                                   0 0
+                                   -1 -1
+                                   'red)
+                  0)
+
+    ;; 右下
+    (check-equal? (count-direction BOARD-A
+                                   3 2
+                                   1 1
+                                   'red)
+                  1)
+    (check-equal? (count-direction BOARD-A
+                                   4 2
+                                   1 1
+                                   'yellow)
+                  0)
+    (check-equal? (count-direction BOARD-B
+                                   2 3
+                                   1 1
+                                   'yellow)
+                  2)
+    (check-equal? (count-direction BOARD-B
+                                   1 5
+                                   1 1
+                                   'red)
+                  0)
+    (check-equal? (count-direction BOARD-C
+                                   1 0
+                                   1 1
+                                   'yellow)
+                  2)
+    (check-equal? (count-direction BOARD-C
+                                   6 0
+                                   1 1
+                                   'red)
+                  0))
+  
+  (test-case "connect-four?"
+    (check-true (connect-four? BOARD-A
+                               4 2
+                               'yellow))
+    (check-true (connect-four? BOARD-A
+                               2 4
+                               'yellow))
+    (check-true (connect-four? BOARD-B
+                               4 2
+                               'red))
+    (check-true (connect-four? BOARD-B
+                               1 5
+                               'red))
+    (check-false (connect-four? BOARD-A
+                                3 2
+                                'red))
+    (check-false (connect-four? BOARD-B
+                                5 3
+                                'yellow))
+    (check-false (connect-four? BOARD-C
+                                0 0
+                                'red))
+    (check-false (connect-four? BOARD-C
+                                6 0
+                                'red))))
