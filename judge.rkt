@@ -17,7 +17,7 @@
   
   (let* ([row (top-piece-row board column)]
          [piece (get-cell board column row)])
-    (cond [(connect-four? board column row) piece]
+    (cond [(connect-four? board column row piece) piece]
           [(board-full? board) 'draw]
           [else #f])))
 
