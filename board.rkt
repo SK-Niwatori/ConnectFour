@@ -85,6 +85,17 @@
       (list-ref (get-column board x) y)
       #f))
 
+;; マスの値がコマであるかどうか判定
+(define (piece? cell)
+  ;; 引数:
+  ;;   cell : マスの値 ('empty, 'red, 'yellow)
+  ;;
+  ;; 戻り値:
+  ;;   真偽値 (#t, #f)
+
+  (or (eq? cell 'red)
+      (eq? cell 'yellow)))
+
 ;; 特定の列を置き換えた新しい盤面を返す
 (define (replace-column board column col-lst)
   ;; 引数:
@@ -103,11 +114,6 @@
       (iter board 0)
       (error 'board.rkt/replace-column "範囲外の列が指定されました: ~a" column)))
 
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; ここから下を実装
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 ;; 盤面の特定の列のリストを受け取り、コマを落とした後の列のリストを返す
 (define (drop-column col-lst piece)
   ;; 引数:
@@ -117,8 +123,15 @@
   ;; 戻り値:
   ;;   コマを落とした後の列のリスト
   
-  ;; TODO
-  (error "未実装"))
+  (let ([next-lst (cdr col-lst)])
+    (if (or (null? next-lst) (piece? (car next-lst)))
+        (cons piece next-lst)
+        (cons (car col-lst) (drop-column next-lst piece)))))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; ここから下を実装
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; コマを落とす
 (define (drop-piece board column piece)
