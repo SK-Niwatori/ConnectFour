@@ -9,6 +9,6 @@
 ;;;; ゲームの起動
 
 ;; アプリケーションの実行を開始
-(big-bang (world (make-empty-board) 'red 0 #f 'title)
+(big-bang (make-initial-world)
           (to-draw draw-scene)
           (on-key control))
