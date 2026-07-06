@@ -2,6 +2,7 @@
 
 #lang racket
 
+(require "board.rkt")
 (require "constants.rkt")
 
 (provide world)
@@ -22,6 +23,10 @@
                scene  ;; 現在の画面 ('title, 'playing, 'result)
                )
   (list board turn column winner scene))
+
+;; ゲームの初期状態を作成
+(define (make-initial-world)
+  (world (make-empty-board) 'red 3 #f 'title))
 
 ;; 状態のセレクタ
 (define (world-board w)  (car w))
