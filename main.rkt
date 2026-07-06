@@ -2,7 +2,6 @@
 
 (require 2htdp/universe)
 (require "game-state.rkt")
-(require "board.rkt")
 (require "draw.rkt")
 (require "input.rkt")
 
