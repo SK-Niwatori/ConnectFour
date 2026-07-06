@@ -8,7 +8,7 @@
 
 (provide draw-scene)
 
-;; ゲーム画面の描画
+;; 画面の描画
 (define (draw-scene w)
   ;; 引数:
   ;;   w : ゲーム全体の状態
