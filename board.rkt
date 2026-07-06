@@ -8,8 +8,8 @@
 (provide valid-row?
          valid-column?
          valid-position?)
-(provide get-column)
-(provide board-cell)
+(provide get-column
+         get-cell)
 (provide replace-column)
 (provide drop-column
          drop-piece)
@@ -71,7 +71,7 @@
       (error 'board.rkt/board-column "範囲外の列が指定されました: ~a" x)))
 
 ;; 盤面から特定のマスの状態を取得
-(define (board-cell board x y)
+(define (get-cell board x y)
   ;; 引数:
   ;;   board : 現在の盤面を表す2次元リスト
   ;;   x     : 列の番号 (0 ~ 6)
