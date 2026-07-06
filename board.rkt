@@ -8,6 +8,7 @@
 (provide valid-row?
          valid-column?
          valid-position?)
+(provide piece?)
 (provide get-column
          get-cell)
 (provide replace-column)
@@ -57,6 +58,17 @@
 
   (and (valid-column? x) (valid-row? y)))
 
+;; マスの値がコマであるかどうか判定
+(define (piece? cell)
+  ;; 引数:
+  ;;   cell : マスの値 ('empty, 'red, 'yellow)
+  ;;
+  ;; 戻り値:
+  ;;   真偽値 (#t, #f)
+
+  (or (eq? cell 'red)
+      (eq? cell 'yellow)))
+
 ;; 盤面から列を取り出す
 (define (get-column board x)
   ;; 引数:
@@ -84,17 +96,6 @@
   (if (valid-position? x y)
       (list-ref (get-column board x) y)
       #f))
-
-;; マスの値がコマであるかどうか判定
-(define (piece? cell)
-  ;; 引数:
-  ;;   cell : マスの値 ('empty, 'red, 'yellow)
-  ;;
-  ;; 戻り値:
-  ;;   真偽値 (#t, #f)
-
-  (or (eq? cell 'red)
-      (eq? cell 'yellow)))
 
 ;; 特定の列を置き換えた新しい盤面を返す
 (define (replace-column board column col-lst)
