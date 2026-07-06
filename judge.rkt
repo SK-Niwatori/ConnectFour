@@ -15,8 +15,11 @@
   ;; 戻り値:
   ;;   判定結果 (#f, 'red, 'yellow, 'draw)
   
-  ;; TODO
-  (error "未実装"))
+  (let* ([row (top-piece-row board column)]
+         [piece (get-cell board column row)])
+    (cond [(connect-four? board column row) piece]
+          [(board-full? board) 'draw]
+          [else #f])))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
