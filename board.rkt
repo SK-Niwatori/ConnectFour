@@ -95,8 +95,13 @@
   ;; 戻り値:
   ;;   盤面のcolumn列目だけをcol-lstに置き換えた新しい盤面を表す2次元リスト
   
-  (cond [(= column 0) (cons col-lst (cdr board))]
-        [else (cons (car board) (replace-column (cdr board) (- column 1) col-lst))]))
+  (define (iter lst idx)
+    (cond [(= idx column) (cons col-lst (cdr lst))]
+          [else (cons (car lst) (iter (cdr lst) (+ idx 1)))]))
+
+  (if (valid-column? column)
+      (iter board 0)
+      (error 'board.rkt/replace-column "範囲外の列が指定されました: ~a" column)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
