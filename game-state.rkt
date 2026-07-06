@@ -67,3 +67,29 @@
 
   ;; TODO
   (error "未実装"))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; テストコード
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; このコマンドでテストを実行
+;; raco test game-state.rkt
+
+(module+ test
+  (require rackunit)
+  
+  (test-case "switch-turn"
+    (check-equal? (switch-turn 'red) 'yellow)
+    (check-equal? (switch-turn 'yellow) 'red))
+  
+  (test-case "move-column-left"
+    (check-equal? (move-column-left 5) 4)
+    (check-equal? (move-column-left 1) 0)
+    (check-equal? (move-column-left 6) 5)
+    (check-equal? (move-column-left 0) 0))
+  
+  (test-case "move-column-right"
+    (check-equal? (move-column-right 1) 2)
+    (check-equal? (move-column-right 5) 6)
+    (check-equal? (move-column-right 0) 1)
+    (check-equal? (move-column-right 6) 6)))
