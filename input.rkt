@@ -95,3 +95,49 @@
   ;; TODO
   (error "未実装"))
 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; テストコード
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; このコマンドでテストを実行
+;; raco test input.rkt
+
+(module+ test
+  (require rackunit)
+
+  (define TITLE-WORLD (make-initial-world))
+
+  (define RESULT-WORLD (world '((empty empty empty empty empty empty)
+                                (empty empty empty empty yellow yellow)
+                                (empty empty empty empty yellow red)
+                                (empty empty red yellow red red)
+                                (empty empty yellow red red yellow)
+                                (empty empty empty empty empty empty)
+                                (empty empty empty empty empty empty))
+                              'yellow
+                              4
+                              'yellow
+                              'result))
+
+  (test-case "control-title"
+    (check-equal? (control-title TITLE-WORLD "\r")
+                  (world (make-empty-board) 'red 3 #f 'playing))
+    (check-equal? (control-title TITLE-WORLD "left")
+                  TITLE-WORLD)
+    (check-equal? (control-title TITLE-WORLD "right")
+                  TITLE-WORLD)
+    (check-equal? (control-title TITLE-WORLD " ")
+                  TITLE-WORLD))
+
+  (test-case "control-result"
+    (check-equal? (control-result RESULT-WORLD "escape")
+                  (make-initial-world))
+    (check-equal? (control-result RESULT-WORLD "\r")
+                  (world (make-empty-board) 'red 3 #f 'playing))
+    (check-equal? (control-result RESULT-WORLD "left")
+                  RESULT-WORLD)
+    (check-equal? (control-result RESULT-WORLD "right")
+                  RESULT-WORLD)
+    (check-equal? (control-result RESULT-WORLD " ")
+                  RESULT-WORLD)))
