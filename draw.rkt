@@ -46,20 +46,20 @@
           back
           (draw-rows (+ row 1)
                      (cdr rows-lst)
-                     (let ([piece (car rows-lst)])
-                       (cond [(eq? piece 'empty)
+                     (let ([cell (car rows-lst)])
+                       (cond [(eq? cell 'empty)
                               (place-image CELL-EMPTY
                                            (cell-x column) (cell-y row)
                                            back)]
-                             [(eq? piece 'red)
+                             [(eq? cell 'red)
                               (place-image CELL-RED
                                            (cell-x column) (cell-y row)
                                            back)]
-                             [(eq? piece 'yellow)
+                             [(eq? cell 'yellow)
                               (place-image CELL-YELLOW
                                            (cell-x column) (cell-y row)
                                            back)]
-                             [else (error 'draw.rkt/draw-board "盤面のコマが無効な値です: ~a" piece)])))))
+                             [else (error 'draw.rkt/draw-board "盤面のマスが無効な値です: ~a" cell)])))))
   
     (if (null? cols-lst)
         back
