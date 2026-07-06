@@ -6,6 +6,7 @@
 (require "constants.rkt")
 
 (provide world)
+(provide make-initial-world)
 (provide world-board
          world-turn
          world-column
