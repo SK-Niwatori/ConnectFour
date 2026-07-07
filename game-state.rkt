@@ -17,11 +17,11 @@
          move-column-right)
 
 ;; ゲーム全体の状態を作成
-(define (world board  ;; 現在の盤面を表す2次元リスト
-               turn   ;; 現在どちらのプレイヤーの番かを表す ('red, 'yellow)
+(define (world board ;; 現在の盤面を表す2次元リスト
+               turn ;; 現在どちらのプレイヤーの番かを表す ('red, 'yellow)
                column ;; 現在選択している列 (0 ~ 6)
                winner ;; 勝者 (#f, 'red, 'yellow, 'draw)
-               scene  ;; 現在の画面 ('title, 'playing, 'result)
+               scene ;; 現在の画面 ('title, 'playing, 'result)
                )
   (list board turn column winner scene))
 
@@ -30,11 +30,11 @@
   (world (make-empty-board) 'red 3 #f 'title))
 
 ;; 状態のセレクタ
-(define (world-board w)  (car w))
-(define (world-turn w)   (cadr w))
+(define (world-board w) (car w))
+(define (world-turn w) (cadr w))
 (define (world-column w) (caddr w))
 (define (world-winner w) (cadddr w))
-(define (world-scene w)  (car (cddddr w)))
+(define (world-scene w) (car (cddddr w)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -55,7 +55,11 @@
   ;;   turnは'red, 'yellow以外の値はとらないとして良いです。もし例外処理をするとしたら何かしらのエラーを返してもよいです。
 
   ;; TODO
-  (error "未実装"))
+  (if (equal? turn 'red)
+      'yellow
+      'red
+      )
+  "できてるか知らん")
 
 ;; 現在選択している列を左へ1つ移動
 (define (move-column-left column)
@@ -71,7 +75,10 @@
   ;;   しかし、columnが0だった場合は、この手続きは0を返さなければなりません。
 
   ;; TODO
-  (error "未実装"))
+  (if (= column 0)
+      0
+      (- column 1))
+  )
 
 ;; 現在選択している列を右へ1つ移動
 (define (move-column-right column)
@@ -87,7 +94,10 @@
   ;;   しかし、columnが COLUMN-SIZE - 1 だった場合は、この手続きは COLUMN-SIZE - 1 を返さなければなりません。
 
   ;; TODO
-  (error "未実装"))
+  (if (= column -1)
+      -1
+      (+ column 1))
+  )
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -99,17 +109,17 @@
 
 (module+ test
   (require rackunit)
-  
+
   (test-case "switch-turn"
     (check-equal? (switch-turn 'red) 'yellow)
     (check-equal? (switch-turn 'yellow) 'red))
-  
+
   (test-case "move-column-left"
     (check-equal? (move-column-left 5) 4)
     (check-equal? (move-column-left 1) 0)
     (check-equal? (move-column-left 6) 5)
     (check-equal? (move-column-left 0) 0))
-  
+
   (test-case "move-column-right"
     (check-equal? (move-column-right 1) 2)
     (check-equal? (move-column-right 5) 6)
