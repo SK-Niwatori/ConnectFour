@@ -180,3 +180,48 @@
     (/ SCENE-SIZE 2)
     60
     board-image))
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; テスト画面表示
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; このコマンドでテスト画面を表示
+;; raco test draw.rkt
+
+(module+ test
+  (require rackunit)
+  (require 2htdp/universe)
+
+  (define BOARD-PLAYING '((empty empty empty empty empty empty)
+                          (empty empty empty empty empty red)
+                          (empty empty empty yellow red red)
+                          (empty empty yellow red yellow yellow)
+                          (empty empty empty red yellow yellow)
+                          (empty empty empty yellow yellow red)
+                          (empty empty empty red red yellow)))
+
+  (define BOARD-RESULT '((empty empty empty empty empty empty)
+                         (empty empty empty empty empty red)
+                         (empty empty empty yellow red red)
+                         (empty empty yellow red yellow yellow)
+                         (empty empty red red yellow yellow)
+                         (empty empty empty yellow yellow red)
+                         (empty empty empty red red yellow)))
+
+  (big-bang (world BOARD-PLAYING
+                   'red
+                   4
+                   #f
+                   'playing)
+            (to-draw draw-scene))
+
+  (big-bang (make-initial-world)
+            (to-draw draw-scene))
+
+  (big-bang (world BOARD-RESULT
+                   'red
+                   4
+                   'red
+                   'result)
+            (to-draw draw-scene)))
