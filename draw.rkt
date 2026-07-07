@@ -90,6 +90,7 @@
   ;;   また、選択している列の上に、turnに応じてPIECE-REDかPIECE-YELLOW、その下にARROWを表示してください。
   ;;   上部に表示するコマの座標は、((column × CELL-SIZE) + (CELL-SIZE ÷ 2) + 50, PIECE-SIZE ÷ 2)に表示してください。
   ;;   ARROWは、((column × CELL-SIZE) + (CELL-SIZE ÷ 2) + 50, PIECE-SIZE + 32)の座標においてください。
+  ;;   place-imageを使うとよいです。
 
   ;; TODO
   (error "未実装"))
