@@ -43,9 +43,12 @@
   ;;   指定された方向に、pieceと同じコマが何個連続しているか数えます。
   ;;   基準となるマス(x, y)自身は数えません。
   ;;   get-cellを使うとよいです。
-  
   ;; TODO
-  (error "未実装"))
+   (define (helping x y piece2 count)
+        (if (eq? piece (get-cell board (+ x dx) (+ y dy)))
+          (helping (+ x dx) (+ y dy) piece (+ count 1))
+          count))
+  (helping x y piece 0))
 
 ;; 縦横斜めで4つ並んでいるかの判定
 (define (connect-four? board x y piece)
@@ -60,9 +63,12 @@
   ;;
   ;; 説明:
   ;;   count-directionを使うとよいです。
-  
-  ;; TODO
-  (error "未実装"))
+  (cond ((>= (+ (count-direction board x y 1 0 piece) (count-direction board x y -1 0 piece)) 3) #t) ; 横
+        ((>= (+ (count-direction board x y 0 1 piece) (count-direction board x y 0 -1 piece)) 3) #t) ; 縦
+        ((>= (+ (count-direction board x y 1 1 piece) (count-direction board x y -1 -1 piece)) 3) #t) ; 右下斜め
+        ((>= (+ (count-direction board x y -1 1 piece) (count-direction board x y 1 -1 piece)) 3) #t) ; 左上斜め
+      ;; TODO
+        (else #f)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
