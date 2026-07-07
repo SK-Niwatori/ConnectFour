@@ -137,11 +137,11 @@
     500
     (place-image
       (text "CONNECT" 60 "red")
-      (/ SCENE-SIZE 2)
+      300
       300
       (place-image
         (text "FOUR" 60 "yellow")
-        (/ SCENE-SIZE 2)
+        580
         300
         SCENE-BACK))))
 
