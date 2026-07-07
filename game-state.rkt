@@ -58,8 +58,7 @@
   (if (equal? turn 'red)
       'yellow
       'red
-      )
-  "できてるか知らん")
+      ))
 
 ;; 現在選択している列を左へ1つ移動
 (define (move-column-left column)
