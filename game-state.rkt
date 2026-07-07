@@ -17,11 +17,11 @@
          move-column-right)
 
 ;; ゲーム全体の状態を作成
-(define (world board ;; 現在の盤面を表す2次元リスト
-               turn ;; 現在どちらのプレイヤーの番かを表す ('red, 'yellow)
+(define (world board  ;; 現在の盤面を表す2次元リスト
+               turn   ;; 現在どちらのプレイヤーの番かを表す ('red, 'yellow)
                column ;; 現在選択している列 (0 ~ 6)
                winner ;; 勝者 (#f, 'red, 'yellow, 'draw)
-               scene ;; 現在の画面 ('title, 'playing, 'result)
+               scene  ;; 現在の画面 ('title, 'playing, 'result)
                )
   (list board turn column winner scene))
 
@@ -30,11 +30,11 @@
   (world (make-empty-board) 'red 3 #f 'title))
 
 ;; 状態のセレクタ
-(define (world-board w) (car w))
-(define (world-turn w) (cadr w))
+(define (world-board w ) (car w))
+(define (world-turn w)   (cadr w))
 (define (world-column w) (caddr w))
 (define (world-winner w) (cadddr w))
-(define (world-scene w) (car (cddddr w)))
+(define (world-scene w)  (car (cddddr w)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
