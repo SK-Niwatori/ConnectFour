@@ -83,6 +83,13 @@
   ;;
   ;; 戻り値:
   ;;   ゲーム画面を描画した画像
+  ;;
+  ;; 説明:
+  ;;   SCENE-BACKを背景として表示してください。これが座標の基準になります。
+  ;;   (SCENE-SIZE ÷ 2, (CELL-SIZE × ROW-SIZE ÷ 2) + 150)の位置にdraw-boardで作成した盤面を配置してください。
+  ;;   また、選択している列の上に、turnに応じてPIECE-REDかPIECE-YELLOW、その下にARROWを表示してください。
+  ;;   上部に表示するコマの座標は、((column × CELL-SIZE) + (CELL-SIZE ÷ 2) + 50, 0)に表示してください。
+  ;;   ARROWは、((column × CELL-SIZE) + (CELL-SIZE ÷ 2) + 50, PIECE-SIZE + 32)の座標においてください。
 
   ;; TODO
   (error "未実装"))
