@@ -19,9 +19,9 @@
 
   (let ([scene (world-scene w)]) ;; 現在の画面 ('title, 'playing, 'result)
     (cond [(eq? scene 'playing) (control-playing w k)]
-          [(eq? scene 'title)   (control-title w k)]
-          [(eq? scene 'result)  (control-result w k)]
-          [else                 (error 'input.rkt/control "ゲームの状態`scene`が無効な値です: ~a" scene)])))
+          [(eq? scene 'title) (control-title w k)]
+          [(eq? scene 'result) (control-result w k)]
+          [else (error 'input.rkt/control "ゲームの状態`scene`が無効な値です: ~a" scene)])))
 
 ;; ゲーム中の画面でのキー入力処理
 (define (control-playing w k)
@@ -32,11 +32,11 @@
   ;; 戻り値:
   ;;   キーを入力した後の新しいゲーム全体の状態
 
-  (let ([board  (world-board w)]  ;; 現在の盤面を表す2次元リスト
-        [turn   (world-turn w)]   ;; 現在どちらのプレイヤーの番かを表す ('red, 'yellow)
+  (let ([board (world-board w)] ;; 現在の盤面を表す2次元リスト
+        [turn (world-turn w)] ;; 現在どちらのプレイヤーの番かを表す ('red, 'yellow)
         [column (world-column w)] ;; 現在選択している列 (0 ~ 6)
         [winner (world-winner w)] ;; 勝者 (#f, 'red, 'yellow, 'draw)
-        [scene  (world-scene w)]  ;; 現在の画面 ('title, 'playing, 'result)
+        [scene (world-scene w)] ;; 現在の画面 ('title, 'playing, 'result)
         )
     (cond [(string=? k "left")
            (world board
@@ -53,7 +53,7 @@
           [(string=? k " ")
            (if (column-full? board column)
                w
-               (let* ([new-board  (drop-piece board column turn)]
+               (let* ([new-board (drop-piece board column turn)]
                       [new-winner (check-winner new-board column)])
                  (world new-board
                         (if new-winner
@@ -87,7 +87,9 @@
   ;;   新しい状態を作るには`world`手続きを使うとよいです。
 
   ;; TODO
-  (error "未実装"))
+  (if (string=? k "\r")
+      (world (make-empty-board) 'red 3 #f 'playing)
+      w))
 
 ;; リザルト画面でのキー入力処理
 (define (control-result w k)
@@ -104,10 +106,14 @@
   ;;   Enterキーが押されたら（kが"\r"だった場合）、新しいゲームを開始した状態（sceneが'playing）を返します。
   ;;   それ以外のキーの場合は、そのままwを返します。
   ;;   新しい状態を作るには`world`手続きを使うとよいです。
-  
-  ;; TODO
-  (error "未実装"))
 
+  ;; TODO
+  (cond [(string=? k "escape")
+         (make-initial-world)]
+        [(string=? k "\r")
+         (world (make-empty-board) 'red 3 #f 'playing)]
+        [else
+         w]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; テストコード
