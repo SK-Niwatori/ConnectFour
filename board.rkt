@@ -93,7 +93,7 @@
   ;; 戻り値:
   ;;   盤面の(x, y)座標におけるマスの状態 ('empty, 'red, 'yellow)
   ;;   範囲外が指定された場合は#f
-  
+
   (if (valid-position? x y)
       (list-ref (get-column board x) y)
       #f))
@@ -107,12 +107,12 @@
   ;; 戻り値:
   ;;   column列目の一番上にあるコマの行番号 (0 ~ 5)
   ;;   コマが無い場合は#f
-  
+
   (define (iter lst row)
     (cond [(null? lst) #f]
           [(piece? (car lst)) row]
           [else (iter (cdr lst) (+ row 1))]))
-  
+
   (iter (get-column board column) 0))
 
 ;; 特定の列を置き換えた新しい盤面を返す
@@ -124,7 +124,7 @@
   ;;
   ;; 戻り値:
   ;;   盤面のcolumn列目だけをcol-lstに置き換えた新しい盤面を表す2次元リスト
-  
+
   (define (iter lst idx)
     (cond [(= idx column) (cons col-lst (cdr lst))]
           [else (cons (car lst) (iter (cdr lst) (+ idx 1)))]))
@@ -141,7 +141,7 @@
   ;;
   ;; 戻り値:
   ;;   コマを落とした後の列のリスト
-  
+
   (let ([next-lst (cdr col-lst)])
     (if (or (null? next-lst) (piece? (car next-lst)))
         (cons piece next-lst)
@@ -166,7 +166,10 @@
   ;;   get-column, drop-column, replace-column を使うとよいです。
 
   ;; TODO
-  (error "未実装"))
+  (replace-column board column
+                  (drop-column
+                    (get-column board column)
+                    piece)))
 
 ;; 指定された列が埋まっているか確認
 (define (column-full? board column)
@@ -181,7 +184,8 @@
   ;;   get-cell, piece? を使うとよいです。
 
   ;; TODO
-  (error "未実装"))
+  (piece? (get-cell board 0 column)))
+"error datta"
 
 ;; 盤面が全て埋まっているか確認
 (define (board-full? board)
@@ -193,10 +197,16 @@
   ;;
   ;; 説明:
   ;;   column-full? を使うとよいです。
-  
-  ;; TODO
-  (error "未実装"))
 
+  ;; TODO
+  (and (column-full? board 0)
+       (column-full? board 1)
+       (column-full? board 2)
+       (column-full? board 3)
+       (column-full? board 4)
+       (column-full? board 5)
+       (column-full? board 6)))
+"error datta"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; テストコード
@@ -207,7 +217,7 @@
 
 (module+ test
   (require rackunit)
-  
+
   (test-case "drop-piece"
     (check-equal? (drop-piece '((empty empty empty empty empty empty)
                                 (empty empty empty empty empty empty)
@@ -310,7 +320,7 @@
                     (empty empty empty empty empty empty)
                     (yellow red yellow red yellow red)
                     (empty empty empty empty empty empty))))
-  
+
   (test-case "column-full?"
     (check-false (column-full? '((empty empty empty empty empty empty)
                                  (empty empty empty empty empty empty)
@@ -319,7 +329,7 @@
                                  (empty empty empty empty empty empty)
                                  (empty empty empty empty empty empty)
                                  (empty empty empty empty empty empty))
-                                0))
+                               0))
 
     (check-false (column-full? '((empty empty empty empty empty red)
                                  (empty empty empty empty empty empty)
@@ -328,7 +338,7 @@
                                  (empty empty empty empty empty empty)
                                  (empty empty empty empty empty empty)
                                  (empty empty empty empty empty empty))
-                                0))
+                               0))
 
     (check-true (column-full? '((yellow red yellow red yellow red)
                                 (empty empty empty empty empty empty)
@@ -356,7 +366,7 @@
                                 (empty empty empty empty empty empty)
                                 (empty empty empty empty empty empty))
                               3)))
-  
+
   (test-case "board-full?"
     (check-false (board-full? '((empty empty empty empty empty empty)
                                 (empty empty empty empty empty empty)
