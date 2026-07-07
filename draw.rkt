@@ -13,18 +13,18 @@
   ;; 引数:
   ;;   w : ゲーム全体の状態
 
-  (let ([board  (world-board w)]  ;; 現在の盤面を表す2次元リスト
-        [turn   (world-turn w)]   ;; 現在どちらのプレイヤーの番かを表す ('red, 'yellow)
+  (let ([board (world-board w)] ;; 現在の盤面を表す2次元リスト
+        [turn (world-turn w)] ;; 現在どちらのプレイヤーの番かを表す ('red, 'yellow)
         [column (world-column w)] ;; 現在選択している列 (0 ~ 6)
         [winner (world-winner w)] ;; 勝者 (#f, 'red, 'yellow, 'draw)
-        [scene  (world-scene w)]  ;; 現在の画面 ('title, 'playing, 'result)
+        [scene (world-scene w)] ;; 現在の画面 ('title, 'playing, 'result)
         )
     (cond [(eq? scene 'playing) (draw-playing board
                                               turn
                                               column)]
-          [(eq? scene 'title)   (draw-title)]
-          [(eq? scene 'result)  (draw-result board winner)]
-          [else                 (error 'draw.rkt/draw-scene "ゲームの状態`scene`が無効な値です: ~a" scene)])))
+          [(eq? scene 'title) (draw-title)]
+          [(eq? scene 'result) (draw-result board winner)]
+          [else (error 'draw.rkt/draw-scene "ゲームの状態`scene`が無効な値です: ~a" scene)])))
 
 ;; 盤面を描画
 (define (draw-board board)
@@ -36,7 +36,7 @@
 
   (define (cell-x column)
     (+ (* column CELL-SIZE) (/ CELL-SIZE 2)))
-  
+
   (define (cell-y row)
     (+ (* row CELL-SIZE) (/ CELL-SIZE 2)))
 
@@ -60,13 +60,13 @@
                                            (cell-x column) (cell-y row)
                                            back)]
                              [else (error 'draw.rkt/draw-board "盤面のマスが無効な値です: ~a" cell)])))))
-  
+
     (if (null? cols-lst)
         back
         (draw-cols (+ column 1)
                    (cdr cols-lst)
                    (draw-rows 0 (car cols-lst) back))))
-  
+
   (draw-cols 0 board BOARD-BACK))
 
 
@@ -93,7 +93,37 @@
   ;;   place-imageを使うとよいです。
 
   ;; TODO
-  (error "未実装"))
+  (define board-image
+    (place-image (draw-board board)
+                 (/ SCENE-SIZE 2)
+                 (+ (/ (* CELL-SIZE ROW-SIZE) 2) 150)
+                 SCENE-BACK))
+
+  (define piece
+    (cond [(eq? turn 'red) PIECE-RED]
+          [(eq? turn 'yellow) PIECE-YELLOW]
+          [else PIECE-EMPTY]))
+
+  (define piece-x
+    (+ (* column CELL-SIZE)
+       (/ CELL-SIZE 2)
+       50))
+
+  (define piece-y
+    (/ PIECE-SIZE 2))
+
+  (define arrow-y
+    (+ PIECE-SIZE 32))
+
+  (place-image
+    ARROW
+    piece-x
+    arrow-y
+    (place-image
+      piece
+      piece-x
+      piece-y
+      board-image)))
 
 ;; タイトル画面を描画
 (define (draw-title)
@@ -101,7 +131,15 @@
   ;;   タイトル画面を描画した画像
 
   ;; TODO
-  (error "未実装"))
+  (place-image
+    (text "Press SPACE to Start" 30 "white")
+    (/ SCENE-SIZE 2)
+    500
+    (place-image
+      (text "CONNECT FOUR" 60 "yellow")
+      (/ SCENE-SIZE 2)
+      300
+      SCENE-BACK)))
 
 ;; リザルト画面を描画
 (define (draw-result board winner)
@@ -113,4 +151,28 @@
   ;;   リザルト画面を描画した画像
 
   ;; TODO
-  (error "未実装"))
+  (define board-image
+    (place-image
+      (draw-board board)
+      (/ SCENE-SIZE 2)
+      (+ (/ (* CELL-SIZE ROW-SIZE) 2) 150)
+      SCENE-BACK))
+
+  (define result-text
+    (cond [(eq? winner 'red)
+           "RED WIN!!"]
+
+          [(eq? winner 'yellow)
+           "YELLOW WIN!!"]
+
+          [(eq? winner 'draw)
+           "DRAW!!"]
+
+          [else
+           "GAME OVER"]))
+
+  (place-image
+    (text result-text 50 "white")
+    (/ SCENE-SIZE 2)
+    60
+    board-image))
