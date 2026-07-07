@@ -93,8 +93,8 @@
   ;;   しかし、columnが COLUMN-SIZE - 1 だった場合は、この手続きは COLUMN-SIZE - 1 を返さなければなりません。
 
   ;; TODO
-  (if (= column -1)
-      -1
+  (if (= column 6)
+      6
       (+ column 1))
   )
 
