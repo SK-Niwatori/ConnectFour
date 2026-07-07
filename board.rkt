@@ -166,10 +166,13 @@
   ;;   get-column, drop-column, replace-column を使うとよいです。
 
   ;; TODO
-  (replace-column board column
-                  (drop-column
-                    (get-column board column)
-                    piece)))
+  (if (column-full? board column)
+      board
+      (replace-column board column
+                      (drop-column
+                        (get-column board column)
+                        piece))))
+
 
 ;; 指定された列が埋まっているか確認
 (define (column-full? board column)
@@ -184,8 +187,7 @@
   ;;   get-cell, piece? を使うとよいです。
 
   ;; TODO
-  (piece? (get-cell board 0 column)))
-"error datta"
+  (piece? (get-cell board column 0)))
 
 ;; 盤面が全て埋まっているか確認
 (define (board-full? board)
@@ -206,7 +208,6 @@
        (column-full? board 4)
        (column-full? board 5)
        (column-full? board 6)))
-"error datta"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; テストコード
