@@ -137,10 +137,13 @@
     500
     (place-image
       (text "CONNECT" 60 "red")
-      (text "FOUR" 60 "yellow")
       (/ SCENE-SIZE 2)
       300
-      SCENE-BACK)))
+      (place-image
+        (text "FOUR" 60 "yellow")
+        (/ SCENE-SIZE 2)
+        300
+        SCENE-BACK))))
 
 ;; リザルト画面を描画
 (define (draw-result board winner)
