@@ -13,18 +13,18 @@
   ;; 引数:
   ;;   w : ゲーム全体の状態
 
-  (let ([board  (world-board w)]  ;; 現在の盤面を表す2次元リスト
-        [turn   (world-turn w)]   ;; 現在どちらのプレイヤーの番かを表す ('red, 'yellow)
+  (let ([board (world-board w)] ;; 現在の盤面を表す2次元リスト
+        [turn (world-turn w)] ;; 現在どちらのプレイヤーの番かを表す ('red, 'yellow)
         [column (world-column w)] ;; 現在選択している列 (0 ~ 6)
         [winner (world-winner w)] ;; 勝者 (#f, 'red, 'yellow, 'draw)
-        [scene  (world-scene w)]  ;; 現在の画面 ('title, 'playing, 'result)
+        [scene (world-scene w)] ;; 現在の画面 ('title, 'playing, 'result)
         )
     (cond [(eq? scene 'playing) (draw-playing board
                                               turn
                                               column)]
-          [(eq? scene 'title)   (draw-title)]
-          [(eq? scene 'result)  (draw-result board winner)]
-          [else                 (error 'draw.rkt/draw-scene "ゲームの状態`scene`が無効な値です: ~a" scene)])))
+          [(eq? scene 'title) (draw-title)]
+          [(eq? scene 'result) (draw-result board winner)]
+          [else (error 'draw.rkt/draw-scene "ゲームの状態`scene`が無効な値です: ~a" scene)])))
 
 ;; 盤面を描画
 (define (draw-board board)
@@ -134,16 +134,23 @@
   (place-image
     (text "Press SPACE to Start" 30 "white")
     (/ SCENE-SIZE 2)
-    500
-    (place-image
-      (text "CONNECT" 60 "red")
-      300
-      300
-      (place-image
-        (text "FOUR" 60 "yellow")
-        580
-        300
-        SCENE-BACK))))
+    500 (place-image
+          (text "← →: Move" 30 "white")
+          (/ SCENE-SIZE 2)
+          600
+          (place-image
+            (text "SPACE:Drop" 30 "white")
+            (/ SCENE-SIZE 2)
+            700
+            (place-image
+              (text "CONNECT" 60 "red")
+              300
+              300
+              (place-image
+                (text "FOUR" 60 "yellow")
+                530
+                300
+                SCENE-BACK))))))
 
 ;; リザルト画面を描画
 (define (draw-result board winner)
@@ -174,12 +181,19 @@
 
           [else
            "GAME OVER"]))
-
   (place-image
-    (text result-text 50 "white")
-    (/ SCENE-SIZE 2)
-    60
-    board-image))
+    (text "RESTART:Enter" 30 "white")
+    630
+    110
+    (place-image
+      (text "TITLE:SPACE" 30 "white")
+      150
+      110
+      (place-image
+        (text result-text 50 "white")
+        (/ SCENE-SIZE 2)
+        60
+        board-image))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
