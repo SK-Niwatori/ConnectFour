@@ -148,7 +148,7 @@
               300
               (place-image
                 (text "FOUR" 60 "yellow")
-                530
+                535
                 300
                 SCENE-BACK))))))
 
