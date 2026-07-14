@@ -171,16 +171,23 @@
 
   (define result-text
     (cond [(eq? winner 'red)
-           "RED WIN!!"]
+           (text "RED WIN!!" 50 "red")
+           (/ SCENE-SIZE 2)
+        60]
 
           [(eq? winner 'yellow)
-           "YELLOW WIN!!"]
+           (text "YELLOW WIN!!" 50 "yellow")
+           (/ SCENE-SIZE 2)
+           60]
 
           [(eq? winner 'draw)
-           "DRAW!!"]
-
+           (text "DRAW!!" 50 "white")
+           (/ SCENE-SIZE 2)
+           60]
           [else
-           "GAME OVER"]))
+           (text "GAME OVER" 50 "white")
+           (/ SCENE-SIZE 2)
+           60]))
   (place-image
     (text "RESTART:Enter" 30 "white")
     630
@@ -189,11 +196,7 @@
       (text "TITLE:Escape" 30 "white")
       150
       110
-      (place-image
-        (text result-text 50 "white")
-        (/ SCENE-SIZE 2)
-        60
-        board-image))))
+        board-image)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
