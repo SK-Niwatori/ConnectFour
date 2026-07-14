@@ -160,7 +160,7 @@
   ;;
   ;; 戻り値:
   ;;   リザルト画面を描画した画像
-
+  
   ;; TODO
   (define board-image
     (place-image
@@ -168,26 +168,19 @@
       (/ SCENE-SIZE 2)
       (+ (/ (* CELL-SIZE ROW-SIZE) 2) 150)
       SCENE-BACK))
-
+  
   (define result-text
     (cond [(eq? winner 'red)
-           (text "RED WIN!!" 50 "red")
-           (/ SCENE-SIZE 2)
-        60]
-
+           (text "RED WIN!!" 50 "red")]
+          
           [(eq? winner 'yellow)
-           (text "YELLOW WIN!!" 50 "yellow")
-           (/ SCENE-SIZE 2)
-           60]
-
+           (text "YELLOW WIN!!" 50 "yellow")]
+          
           [(eq? winner 'draw)
-           (text "DRAW!!" 50 "white")
-           (/ SCENE-SIZE 2)
-           60]
+           (text "DRAW!!" 50 "white")]
           [else
            (text "GAME OVER" 50 "white")
-           (/ SCENE-SIZE 2)
-           60]))
+           ]))
   (place-image
     (text "RESTART:Enter" 30 "white")
     630
@@ -196,7 +189,11 @@
       (text "TITLE:Escape" 30 "white")
       150
       110
-        board-image)))
+      (place-image
+        result-text
+        (/ SCENE-SIZE 2)
+        60
+        board-image))))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
