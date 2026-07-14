@@ -129,7 +129,7 @@
 (define (draw-title)
   ;; 戻り値:
   ;;   タイトル画面を描画した画像
-
+  
   ;; TODO
   (place-image
     (text "Press Enter to Start" 30 "white")
@@ -150,7 +150,26 @@
                 (text "FOUR" 60 "yellow")
                 535
                 300
-                SCENE-BACK))))))
+                
+                (place-image
+                  (beside PIECE-RED
+                          PIECE-YELLOW
+                          PIECE-RED
+                          PIECE-YELLOW
+                          PIECE-RED
+                          PIECE-YELLOW)
+                  390
+                  375
+                  (place-image
+                    (beside PIECE-RED
+                            PIECE-YELLOW
+                            PIECE-RED
+                            PIECE-YELLOW
+                            PIECE-RED
+                            PIECE-YELLOW)
+                    390
+                    225
+                    SCENE-BACK))))))))
 
 ;; リザルト画面を描画
 (define (draw-result board winner)
