@@ -2,6 +2,7 @@
 
 #lang racket
 
+(require (only-in racket/gui play-sound))
 (require "board.rkt")
 
 (provide check-winner)
@@ -17,7 +18,8 @@
   
   (let* ([row (top-piece-row board column)]
          [piece (get-cell board column row)])
-    (cond [(connect-four? board column row piece) piece]
+    (cond [(connect-four? board column row piece) (begin (play-sound "assets/win.wav" #t)
+                                                         piece)]
           [(board-full? board) 'draw]
           [else #f])))
 

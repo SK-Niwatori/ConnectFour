@@ -2,6 +2,7 @@
 
 #lang racket
 
+(require (only-in racket/gui play-sound))
 (require "constants.rkt")
 
 (provide make-empty-board)
@@ -168,10 +169,11 @@
   ;; TODO
   (if (column-full? board column)
       board
-      (replace-column board column
+      (begin (play-sound "assets/drop.wav" #t)
+             (replace-column board column
                       (drop-column
                         (get-column board column)
-                        piece))))
+                        piece)))))
 
 
 ;; 指定された列が埋まっているか確認

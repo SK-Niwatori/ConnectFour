@@ -2,6 +2,7 @@
 
 #lang racket
 
+(require (only-in racket/gui play-sound))
 (require "board.rkt")
 (require "constants.rkt")
 
@@ -76,7 +77,8 @@
   ;; TODO
   (if (= column 0)
       0
-      (- column 1))
+      (begin (play-sound "assets/move.wav" #t)
+             (- column 1)))
   )
 
 ;; 現在選択している列を右へ1つ移動
@@ -95,7 +97,8 @@
   ;; TODO
   (if (= column 6)
       6
-      (+ column 1))
+      (begin (play-sound "assets/move.wav" #t)
+             (+ column 1)))
   )
 
 
