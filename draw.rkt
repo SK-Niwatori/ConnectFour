@@ -177,7 +177,7 @@
            (text "YELLOW WIN!!" 50 "yellow")]
           
           [(eq? winner 'draw)
-           (text "DRAW!!" 50 "white")]
+           (text "DRAW!!" 50 "orange")]
           [else
            (text "GAME OVER" 50 "white")
            ]))
