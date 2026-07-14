@@ -132,7 +132,7 @@
 
   ;; TODO
   (place-image
-    (text "Press SPACE to Start" 30 "white")
+    (text "Press Enter to Start" 30 "white")
     (/ SCENE-SIZE 2)
     500 (place-image
           (text "← →: Move" 30 "white")
@@ -186,7 +186,7 @@
     630
     110
     (place-image
-      (text "TITLE:SPACE" 30 "white")
+      (text "TITLE:Escape" 30 "white")
       150
       110
       (place-image
