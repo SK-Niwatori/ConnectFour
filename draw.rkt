@@ -7,10 +7,6 @@
 (require "constants.rkt")
 
 (provide draw-scene)
-(provide TITLE-IMAGE)
-
-(define TITLE-IMAGE
-  (bitmap "assets/conefo.png"))
 
 ;; 画面の描画
 (define (draw-scene w)
@@ -174,7 +170,7 @@
                     390
                     225 
                     (place-image
-                        (scale 0.4 TITLE-IMAGE)
+                        (scale 0.4 (bitmap "assets/conefo.png"))
                           140
                           600
                           SCENE-BACK)))))))))
