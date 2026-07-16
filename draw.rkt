@@ -7,24 +7,27 @@
 (require "constants.rkt")
 
 (provide draw-scene)
+(provide TITLE-IMAGE)
 
+(define TITLE-IMAGE
+  (bitmap "assets/conefo.png"))
 ;; 画面の描画
 (define (draw-scene w)
   ;; 引数:
   ;;   w : ゲーム全体の状態
-
-  (let ([board  (world-board w)]  ;; 現在の盤面を表す2次元リスト
-        [turn   (world-turn w)]   ;; 現在どちらのプレイヤーの番かを表す ('red, 'yellow)
+  
+  (let ([board (world-board w)] ;; 現在の盤面を表す2次元リスト
+        [turn (world-turn w)] ;; 現在どちらのプレイヤーの番かを表す ('red, 'yellow)
         [column (world-column w)] ;; 現在選択している列 (0 ~ 6)
         [winner (world-winner w)] ;; 勝者 (#f, 'red, 'yellow, 'draw)
-        [scene  (world-scene w)]  ;; 現在の画面 ('title, 'playing, 'result)
+        [scene (world-scene w)] ;; 現在の画面 ('title, 'playing, 'result)
         )
     (cond [(eq? scene 'playing) (draw-playing board
                                               turn
                                               column)]
-          [(eq? scene 'title)   (draw-title)]
-          [(eq? scene 'result)  (draw-result board winner)]
-          [else                 (error 'draw.rkt/draw-scene "ゲームの状態`scene`が無効な値です: ~a" scene)])))
+          [(eq? scene 'title) (draw-title)]
+          [(eq? scene 'result) (draw-result board winner)]
+          [else (error 'draw.rkt/draw-scene "ゲームの状態`scene`が無効な値です: ~a" scene)])))
 
 ;; 盤面を描画
 (define (draw-board board)
@@ -33,13 +36,13 @@
   ;;
   ;; 戻り値:
   ;;   盤面を描画した画像
-
+  
   (define (cell-x column)
     (+ (* column CELL-SIZE) (/ CELL-SIZE 2)))
-
+  
   (define (cell-y row)
     (+ (* row CELL-SIZE) (/ CELL-SIZE 2)))
-
+  
   (define (draw-cols column cols-lst back)
     (define (draw-rows row rows-lst back)
       (if (null? rows-lst)
@@ -60,13 +63,13 @@
                                            (cell-x column) (cell-y row)
                                            back)]
                              [else (error 'draw.rkt/draw-board "盤面のマスが無効な値です: ~a" cell)])))))
-
+    
     (if (null? cols-lst)
         back
         (draw-cols (+ column 1)
                    (cdr cols-lst)
                    (draw-rows 0 (car cols-lst) back))))
-
+  
   (draw-cols 0 board BOARD-BACK))
 
 
@@ -91,30 +94,30 @@
   ;;   上部に表示するコマの座標は、((column × CELL-SIZE) + (CELL-SIZE ÷ 2) + 50, PIECE-SIZE ÷ 2)に表示してください。
   ;;   ARROWは、((column × CELL-SIZE) + (CELL-SIZE ÷ 2) + 50, PIECE-SIZE + 40)の座標においてください。
   ;;   place-imageを使うとよいです。
-
+  
   ;; TODO
   (define board-image
     (place-image (draw-board board)
                  (/ SCENE-SIZE 2)
                  (+ (/ (* CELL-SIZE ROW-SIZE) 2) 150)
                  SCENE-BACK))
-
+  
   (define piece
     (cond [(eq? turn 'red) PIECE-RED]
           [(eq? turn 'yellow) PIECE-YELLOW]
           [else PIECE-EMPTY]))
-
+  
   (define piece-x
     (+ (* column CELL-SIZE)
        (/ CELL-SIZE 2)
        50))
-
+  
   (define piece-y
     (/ PIECE-SIZE 2))
-
+  
   (define arrow-y
     (+ PIECE-SIZE 40))
-
+  
   (place-image
     ARROW
     piece-x
@@ -168,8 +171,12 @@
                             PIECE-RED
                             PIECE-YELLOW)
                     390
-                    225
-                    SCENE-BACK))))))))
+                    225 
+                    (place-image
+                        (scale 0.4 TITLE-IMAGE)
+                          140
+                          600
+                          SCENE-BACK)))))))))
 
 ;; リザルト画面を描画
 (define (draw-result board winner)
