@@ -31,11 +31,11 @@
   (world (make-empty-board) 'red 3 #f 'title))
 
 ;; 状態のセレクタ
-(define (world-board w ) (car w))
-(define (world-turn w)   (cadr w))
+(define (world-board  w) (car w))
+(define (world-turn   w) (cadr w))
 (define (world-column w) (caddr w))
 (define (world-winner w) (cadddr w))
-(define (world-scene w)  (car (cddddr w)))
+(define (world-scene  w) (car (cddddr w)))
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;

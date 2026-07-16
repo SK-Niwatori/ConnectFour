@@ -19,8 +19,8 @@
 
   (let ([scene (world-scene w)]) ;; 現在の画面 ('title, 'playing, 'result)
     (cond [(eq? scene 'playing) (control-playing w k)]
-          [(eq? scene 'title)   (control-title w k)]
-          [(eq? scene 'result)  (control-result w k)]
+          [(eq? scene 'title)   (control-title   w k)]
+          [(eq? scene 'result)  (control-result  w k)]
           [else                 (error 'input.rkt/control "ゲームの状態`scene`が無効な値です: ~a" scene)])))
 
 ;; ゲーム中の画面でのキー入力処理
