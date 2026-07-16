@@ -6,6 +6,9 @@
 
 https://pb.sk-niwatori.net/
 
+ユーザー名：pb  
+パスワード：game
+
 ## 作業するときの流れ
 
 1. **作業前.bat** をダブルクリックする
